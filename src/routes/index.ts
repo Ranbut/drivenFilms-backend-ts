@@ -4,7 +4,7 @@ import filmRoutes from "./filmRoutes.ts";
 
 const routes = Router();
 
-routes.use("/user", userRoutes);
+routes.use("/users", userRoutes);
 routes.use("/films", filmRoutes);
 
 export default routes;

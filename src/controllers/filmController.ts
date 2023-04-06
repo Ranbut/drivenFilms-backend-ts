@@ -27,7 +27,21 @@ export async function add (req: Request, res: Response, next: NextFunction) {
   }
 }
 
+export async function remove (req: Request, res: Response, next: NextFunction) {
+    try{
+        const filmId : number = Number(req.params.id);
+
+        await filmServices.remove(filmId);
+
+        return res.status(200).send(`Film by 'ID:${filmId}' was removed`);
+    }
+    catch(err){
+        next(err);
+  }
+}
+
 export default{
     findAll,
-    add
+    add,
+    remove
 };

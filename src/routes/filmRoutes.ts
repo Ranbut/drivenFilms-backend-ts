@@ -7,5 +7,6 @@ const filmRoutes = Router();
 
 filmRoutes.get('/', filmController.findAll);
 filmRoutes.post('/', schemaValidation(Film.add), filmController.add);
+filmRoutes.delete('/:id', filmController.remove);
 
 export default filmRoutes;

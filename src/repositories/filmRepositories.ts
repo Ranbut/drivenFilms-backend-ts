@@ -13,6 +13,14 @@ async function findAll(){
     return await db.query(`SELECT * FROM films;`);
 }
 
+async function findById(filmId: number){
+    return await db.query(`SELECT * FROM films WHERE id=$1;`, [filmId]);
+}
+
+async function findByName(name: string){
+    return await db.query(`SELECT * FROM films WHERE name '%$1%';`, [name]);
+}
+
 async function add({
     name,
     synopsis,
@@ -30,7 +38,15 @@ async function add({
       );
 }
 
+async function remove(filmId: number)
+{
+    return await db.query(`DELETE FROM films WHERE id=$1;`, [filmId]);
+}
+
 export default {
     findAll,
-    add
+    findById,
+    findByName,
+    add,
+    remove
 };
