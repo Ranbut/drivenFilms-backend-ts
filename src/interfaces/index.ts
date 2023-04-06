@@ -5,6 +5,7 @@ interface IFilm {
     date: Date;
     image: string;
     stockTotal: number;
+    isRented: boolean
   }
 
   interface IUser {

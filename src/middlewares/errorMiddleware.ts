@@ -2,10 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 
 export function handleApplicationErrors(err: any, req: Request, res: Response, next: NextFunction) {
-  if (err.name === "ConflictError" || err.name === "DuplicatedEmailError" || err.name === "DuplicatedCpfError") {
+  if (err.name === "ConflictError" || err.name === "DuplicatedEmailError" || err.name === "DuplicatedCpfError" ||
+  err.name === "DuplicatedFilmError" || err.name === "AlreadyRentedError") {
     return res
       .status(httpStatus.CONFLICT)
-      .send({ message: err.message, email: err.email, cpf: err.cpf });
+      .send({ message: err.message, email: err.email, cpf: err.cpf, film: err.film});
   }
 
 

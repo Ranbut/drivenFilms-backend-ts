@@ -14,6 +14,14 @@ async function add(film : IFilm) {
     await filmRepositories.add(film);
 }
 
+async function rent(filmId : number) {
+    const { rowCount, rows: [film] } : { rowCount: number, rows: IFilm[] } = await filmRepositories.findById(filmId);
+    if (!rowCount) throw errors.notFoundError();
+    if(film.isRented) throw errors.alreadyRentedError(film.name);
+
+    await filmRepositories.rent(filmId);
+}
+
 async function remove(filmId : number) {
     const { rowCount } = await filmRepositories.findById(filmId);
     if (!rowCount) throw errors.notFoundError();
@@ -24,5 +32,6 @@ async function remove(filmId : number) {
 export default{
     findAll,
     add,
+    rent,
     remove
 };

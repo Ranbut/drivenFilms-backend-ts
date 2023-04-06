@@ -38,6 +38,11 @@ async function add({
       );
 }
 
+async function rent(filmId: number)
+{
+    return await db.query(`UPDATE films SET "isRented"=true WHERE id=$1;`, [filmId]);
+}
+
 async function remove(filmId: number)
 {
     return await db.query(`DELETE FROM films WHERE id=$1;`, [filmId]);
@@ -48,5 +53,6 @@ export default {
     findById,
     findByName,
     add,
+    rent,
     remove
 };

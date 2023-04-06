@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import userRepositories from "../repositories/userRepositories";
+import userRepositories from "../repositories/userRepositories.ts";
 import errors from "../errors/index.js";
 import jwt, { JwtPayload } from "jsonwebtoken";
 

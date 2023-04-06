@@ -27,6 +27,19 @@ export async function add (req: Request, res: Response, next: NextFunction) {
   }
 }
 
+export async function rent (req: Request, res: Response, next: NextFunction) {
+    try{
+        const filmId : number = Number(req.params.id);
+
+        await filmServices.rent(filmId);
+
+        return res.status(200).send(`Film by 'ID:${filmId}' was rented`);
+    }
+    catch(err){
+        next(err);
+  }
+}
+
 export async function remove (req: Request, res: Response, next: NextFunction) {
     try{
         const filmId : number = Number(req.params.id);
@@ -43,5 +56,6 @@ export async function remove (req: Request, res: Response, next: NextFunction) {
 export default{
     findAll,
     add,
+    rent,
     remove
 };

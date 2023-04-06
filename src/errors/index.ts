@@ -50,6 +50,15 @@ function duplicatedCpfError(cpf: string) {
     };
   }
 
+  function alreadyRentedError(filmName: string) {
+    return {
+      name: "AlreadyRentedError",
+      message: "This film was already rented",
+      filmName
+    };
+  }
+
+
 export default{
     conflictError,
     invalidCredentialsError,
@@ -57,5 +66,6 @@ export default{
     notFoundError,
     duplicatedEmailError,
     duplicatedCpfError,
-    duplicatedFilmError
+    duplicatedFilmError,
+    alreadyRentedError
 };
