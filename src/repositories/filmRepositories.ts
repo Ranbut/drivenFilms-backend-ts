@@ -6,7 +6,6 @@ interface Film {
     pricePerDay: number;
     date: Date;
     image: string;
-    stockTotal: number;
   }
 
 async function findAll(){
@@ -18,7 +17,7 @@ async function findById(filmId: number){
 }
 
 async function findByName(name: string){
-    return await db.query(`SELECT * FROM films WHERE name '%$1%';`, [name]);
+    return await db.query('SELECT * FROM films WHERE name LIKE $1', [`%${name}%`]);
 }
 
 async function add({
